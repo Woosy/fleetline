@@ -72,8 +72,7 @@ function ajax_new_event($bdd) {
     // On vérifie que les données sont bien transmises
     if (isset($_REQUEST)) {
 
-        // $auteur = $_SESSION['utilisateur_id'];
-        $auteur = "1";
+        $auteur = $_COOKIE['mail'];
         $titre = $_REQUEST['titre'];
         $heure = $_REQUEST['heure'];
         $lieu = $_REQUEST['lieu'];
@@ -124,44 +123,6 @@ function ajax_search_autocomplete($bdd) {
 
 }
 
-
-
-
-
-/**
-* Connexion de l'utilisateur
-*/
-function ajax_user_login($bdd) {
-
-    // On vérifie que les données sont bien transmises
-    if (isset($_REQUEST)) {
-
-        $mail = $_REQUEST['mail'];
-        $mdp = $_REQUEST['mdp'];
-
-        $sql = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ? AND mdp = ?");
-        $sql -> execute(array($mail, $mdp));
-        $isValid = $sql -> rowCount();
-
-        if ($isValid == "1") {
-            $infos = $sql -> fetch();
-            $_SESSION['uti_id'] = $infos['id'];
-            $_SESSION['uti_mail'] = $infos['mail'];
-            $_SESSION['uti_prenom'] = $infos['prenom'];
-            $_SESSION['uti_nom'] = $infos['nom'];
-
-            echo "true";
-            
-        } else {
-            echo "false";
-        }
-
-    } else {
-        echo "false";
-    }
-
-
-}
 
 
 ?>
