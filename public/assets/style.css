@@ -451,14 +451,15 @@
 }
 .profil-user-nom {
     color: #6a89cc;
-    margin: auto;
-    font-size: 40px;
+    margin: 10px auto 0px auto;
+    font-size: 30px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
 }
 .profil-user-mail {
     color: #6a89cc;
     margin: auto;
+    margin-bottom: 10px;
     font-size: 20px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
