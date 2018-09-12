@@ -515,6 +515,10 @@ body .index {
     background-color: #6a89cc;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 /** Loader **/
 .loader-fleetline {
     z-index: 9999;

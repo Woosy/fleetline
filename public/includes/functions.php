@@ -23,8 +23,12 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         ajax_search_autocomplete($bdd);
         break;
 
-        case 'ajax_user_login':
-        ajax_user_login($bdd);
+        case 'ajax_home_page':
+        ajax_home_page($bdd);
+        break;
+
+        case 'ajax_register_user':
+        ajax_register_user($bdd);
         break;
     }
 }
@@ -124,5 +128,85 @@ function ajax_search_autocomplete($bdd) {
 }
 
 
+
+
+/**
+* Fonction qui récupère tout les posts et qui les renvoies sous forme d'un unique string
+*/
+function ajax_home_page($bdd) {
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        $sql = $bdd -> prepare("SELECT * FROM posts ORDER BY id DESC");
+        $sql -> execute();
+
+        $results = $sql -> fetchAll();
+        $output = "";
+
+        foreach ($results as $resultat) {
+
+
+            // Préparation des variables :
+            $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
+            $sql2 -> execute(array($resultat['auteur']));
+            $results2 = $sql2 -> fetch();
+
+            $date = new DateTime();
+            $date->setTimestamp($resultat['date_debut']);
+            $date = date_format($date, 'd/m/Y');
+
+            $output = $output."
+            <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
+            <div class='home-page'>
+            <div class='home-post'>
+            <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+            <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
+            <p class='post-title'>".$resultat['titre']."</p>
+            <p class='post-desc'>".$resultat['description']."</p>
+            <div class='post-autres'>
+            <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
+            <p class='post-date'>".$date."</p>
+            <p class='post-heure'>".$resultat['heure']."</p>
+            <p class='post-likes'>❤ 13</p>
+            </div>
+            </div>
+            </div>
+            </a>";
+
+        }
+
+        echo $output;
+
+    }
+
+}
+
+
+
+
+
+
+/**
+* Enregistre l'utilisateur dans la bdd si il n'existe pas encore
+*/
+function ajax_register_user($bdd) {
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        $sql = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
+        $sql -> execute(array($_COOKIE['mail']));
+
+        $result = $sql -> rowCount();
+
+        if ($result == 0) {
+            $sql2 = $bdd -> prepare("INSERT INTO  utilisateurs (mail, nom, prenom) VALUES (?, ?, ?)");
+            $sql2 -> execute(array($_COOKIE['mail'], $_COOKIE['nom'], $_COOKIE['prenom']));
+        }
+
+    }
+
+}
 
 ?>

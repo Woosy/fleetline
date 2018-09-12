@@ -34,130 +34,21 @@ include("includes/header.php");
     <div class="home-page-container">
 
 
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
+        <div class='home-page'>
+            <div href='evenement.php' class='home-post loader-on'>
+                <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+                <p class='post-auteur-nom'>Arthur D.</p>
+                <p class='post-title'>Ceci est un titre</p>
+                <p class='post-desc'>Lorem ipcididunt ut labore et dolore magna</p>
+                <div class='post-autres'>
+                    <p class='post-ville'>Villeurbanne</p>
+                    <p class='post-date'>Samedi 13/09</p>
+                    <p class='post-heure'>13:00</p>
+                    <p class='post-likes'>❤ 13</p>
                 </div>
             </div>
         </div>
 
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="home-page">
-            <div href="evenement.php" class="home-post loader-on">
-                <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-                <p class="post-auteur-nom">Arthur D.</p>
-                <p class="post-title">Ceci est un titre</p>
-                <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-                <div class="post-autres">
-                    <p class="post-ville">Villeurbanne</p>
-                    <p class="post-date">Samedi 13/09</p>
-                    <p class="post-heure">13:00</p>
-                    <p class="post-likes">❤ 13</p>
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -167,6 +58,41 @@ include("includes/header.php");
 </div>
 
 
+
+<script type="text/javascript">
+
+$(window).on('load', function () {
+
+
+    // Enregistrement de l'utilisateur
+    $.ajax({
+        url:"includes/functions.php",
+        type: "POST",
+        data:{
+            "action": "ajax_register_user"
+        },
+        success:function(data) {
+        }
+    });
+
+
+    // Demande de posts
+    $.ajax({
+        url:"includes/functions.php",
+        type: "POST",
+        data:{
+            "action": "ajax_home_page"
+        },
+        success:function(data) {
+            // Afficher toutes les données de ma requête
+            $(".home-page-container").html(data);
+        }
+    });
+
+});
+
+
+</script>
 
 
 
