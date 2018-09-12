@@ -1,0 +1,747 @@
+/*=====================================
+* =====================================
+* ==== FEUILLE DE STYLE GLOBALE =======
+* =====================================
+* ===================================*/
+
+
+
+
+/** ======================== **/
+/** =====  >> Index << ===== **/
+
+/** === (1.) Header ======== **/
+
+
+
+/** === (2.) Page d'accueil  **/
+/**  (2.1) Logo & desc       **/
+/**  (2.2) Formulaire login  **/
+
+
+
+/** === (3.) Fil d'actualité ==== **/
+/** (3.1) Corps                   **/
+/** (3.2) Bouton nouvel événement **/
+/** (3.3) Mise en forme des posts **/
+
+
+
+/** === (4.) Page de profil  ===== **/
+/** (4.1) Header et pdp            **/
+/** (4.2) Informations utilisateur **/
+
+
+
+
+/** === (5.) Footer ======== **/
+
+
+
+/** === (6.) Autres ======== **/
+
+/** === (7.) formulaire ======== **/
+/** (7.1) INCLUDE Header et pdp  **/
+/** (7.2) Formulaire **/
+
+/** === (8.) Description Event ======== **/
+/** (8.1)   **/
+/** (8.2)  **/
+
+
+
+/* =====================================
+* == 1. Header
+* ================================== */
+
+.header {
+    z-index: 20;
+    height: 80px;
+    background-color: #6a89cc;
+    display: flex;
+    box-shadow: -1px 3px 26px -5px rgba(0,0,0,0.60);
+    /* Positionnement */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header-left {
+    float: left;
+    width: auto;
+    height:auto;
+    margin: auto;
+}
+.header-logo {
+    height: 30px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.header-right {
+    width: auto;
+    height:auto;
+    margin: auto;
+    border-radius: 100px;
+}
+.header-pdp {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+/* =====================================
+* == 2. Page d'accueil
+* ================================== */
+
+
+/** (2.1) Logo & desc **/
+
+.main {
+    /* Élément centré */
+    text-align: center;
+    margin-top: 25vh;
+    transform: translateY(-25%);
+}
+.main-logo {
+    height: 75%;
+    width: 75%;
+}
+
+/** (2.2) Formulaire login **/
+
+.main-login {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: auto;
+}
+.main-login-input {
+    width: 100%;
+    height: 38px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: #6a89cc;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+.main-login-desc {
+    color: white;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+.main-login-button {
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+    color: #6a89cc;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+/* =====================================
+* == 3. Page fil d'actualité
+* ================================== */
+
+/** (3.1) Corps **/
+.home-fil-home {
+    /* Positionnement */
+    z-index: -1;
+    position: fixed;
+    left: 50%;
+    margin-left:-20px;
+    margin-top: -13vh;
+    background-color: #6a89cc;
+    min-height: 100vh;
+    width: 35px;
+}
+
+.home-page-container {
+    margin-top: 100px;
+}
+
+
+/** (3.2) Bouton nouvel événement **/
+
+.post-new {
+    z-index: 20;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    height: 55px;
+    width: 55px;
+    border-radius: 35px;
+    background: #6a89cc;
+    text-decoration: none;
+    box-shadow: 2px 2px 16px 0px rgba(0,0,0,0.55);
+}
+.post-new i {
+    position: relative;
+    margin: 0;
+    left: 13.25px;
+    top: 11.25px;
+    color: white;
+    font-size: 30px;
+}
+.post-new:hover {
+    background: #96a8ce;
+}
+
+
+/** Bouton retour page fil d'actualité **/
+
+.home-retour {
+    z-index: 20;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    height: 55px;
+    width: 55px;
+    border-radius: 35px;
+    background: #6a89cc;
+    text-decoration: none;
+    box-shadow: 2px 2px 16px 0px rgba(0,0,0,0.55);
+}
+.home-retour i {
+    position: relative;
+    margin: 0;
+    left: 13px;
+    top: 14px;
+    color: white;
+    font-size: 26px;
+}
+.home-retour:hover {
+    background: #96a8ce;
+}
+
+
+/** (3.3) Mise en forme des posts **/
+
+.home-post {
+    /* Positionnement */
+    z-index: 1;
+    position: relative;
+    margin: 15px 0 15px 0;
+    width: 100vw;
+    padding: 15px 15vw 15px 15vw;
+    height: auto;
+    border-top: 2px solid #6a89cc;
+    border-bottom: 2px solid #6a89cc;
+    background-color: white;
+}
+
+.post-auteur-pdp {
+    float: left;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+
+.post-auteur-nom {
+    float: left;
+    width: 30%;
+    height: auto;
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.post-title {
+    width: auto;
+    height: auto;
+    margin-top: 8px;
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.post-desc {
+    margin-top: 8px;
+    max-height: 50px;
+    text-align: justify;
+    font-size: 13px;
+    font-family: 'Nunito', sans-serif;
+    /* Suppression du texte qui dépasse */
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.post-autres {
+    height: 20px;
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.post-ville, .post-date, .post-heure, .post-likes {
+    margin-right: 8px;
+    margin-left: 8px;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+}
+
+
+/** Overlay recherche tags et amis **/
+
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 30;
+    left: 0;
+    top: 0;
+    background-color: #6a89cc;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #fff;
+}
+
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px !important;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .closebtn {
+        font-size: 40px !important;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+.overlay-btn {
+    position: fixed;
+    z-index: 200;
+    margin-top: 35vh;
+    transform: translateY(-35%);
+    font-size: 25px;
+    color: #6a89cc;
+}
+
+
+.overlay-recherche-label {
+    color: white;
+    font-size: 14px !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.overlay-recherche {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #6a89cc;
+    font-size: 14px !important;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 20px !important;
+}
+
+.overlay-tags {
+    margin: 80px auto 0 auto;
+    height: 20px;
+    width: 80%;
+    font-size: 22px;
+}
+
+
+
+
+/* =====================================
+* == 4. Page de profil
+* ================================== */
+.home-fil-profil {
+    /* Positionnement */
+    z-index: -10;
+    position: fixed;
+    left: 50%;
+    margin-left:-20px;
+    background-color: #6a89cc;
+    min-height: 20000px;
+    width: 35px;
+
+
+}
+
+
+
+/** (4.1) Header et pdp **/
+.profil-header {
+    z-index: 1;
+    height: 140px;
+    width: 100%;
+    background-color: #6a89cc;
+}
+
+.profil-header-logo {
+    height: 50px;
+    width: 220px;
+    margin: 40px 25px 0;
+}
+
+.profil-pdp {
+    z-index: 20;
+    margin-top: -20px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 200px;
+    border: 2px solid #6a89cc;
+    border-radius: 100px;
+    background-color: white;
+}
+.profil-pdp-image {
+    margin-top: 25px;
+    margin-left: 20px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+
+/** (4.2) Informations de l'utilisateur **/
+
+.profil-user {
+
+    border-top: solid #6a89cc 2px;
+    border-bottom: solid #6a89cc 2px;
+    background-color: white;
+    /* border-radius:365684684684px; */
+    display: block;
+    margin-top: 2vh;
+    margin-bottom: 2vh
+
+}
+.profil-user-nom {
+    color: #6a89cc;
+    margin: auto;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.profil-user-mail {
+    color: #6a89cc;
+    margin: auto;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.profil-btn-amis {
+    display: block;
+    height: 35px;
+    width: 150px;
+    margin: 2vh auto;
+    background-color: white;
+    border: 2px solid #6a89cc;
+    color: #6a89cc;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.profil-evenements {
+    z-index: 20;
+    height: 35px;
+    width: 100%;
+    background-color: #6a89cc;
+    border: solid #6a89cc 3px;
+}
+
+.profil-evenements-title {
+
+    display: block;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+
+
+
+
+
+
+
+/* =====================================
+* == 6. Autres
+* ================================== */
+
+body .index {
+    margin: 0;
+    background-color: #6a89cc;
+}
+
+/** Loader **/
+.loader-fleetline {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #6a89cc;
+}
+.loader-fleetline img {
+    margin-top: 35vh;
+    transform: translateY(-35%);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+/* =====================================
+* == 7. Page de profil
+* ================================== */
+
+/** (7.1) Formulaire           **/
+
+.newpost-page {
+    margin-top: 110px;
+    max-height: 200px;
+}
+
+.newpost-titre {
+    margin-bottom: 40px;
+    color: #6a89cc;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profil-logout {
+    margin-top: 55px;
+    margin-right: 30px;
+    float: right;
+    font-size: 22px;
+    color: white;
+}
+
+.newpost-form {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group input {
+    margin: 10px auto 15px auto;
+    width: 100%;
+    max-height: 150px;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group textarea {
+    margin: 10px auto 15px auto;
+    width: 100%;
+    max-height: 150px;
+    font-size: 14px;
+    height: 150px;
+    font-family: 'Nunito', sans-serif
+}
+
+.MicrosoftMap .as_container_search {
+    max-width: 80% !important;
+}
+
+
+
+
+/* =====================================
+* == 8. Description Event
+* ================================== */
+
+
+
+.post-description {
+    height: auto;
+}
+.post-description-titre {
+    border-bottom: solid black 2px;
+    min-width: 75%;
+    max-width: 75%;
+    display: block;
+    margin: 110px auto 5% auto;
+    font-size: 32px !important;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.post-description-date {
+    min-width: 75%;
+    max-width: 75%;
+    margin: 15px auto 10px auto;
+    display: flex;
+    justify-content:space-around;
+    color: #6a89cc;
+    font-size: 2em;
+    font-family: 'Nunito', sans-serif
+}
+
+.post-description-description {
+    min-width: 75%;
+    max-width: 75%;
+    display: block;
+    margin: auto;
+}
+.post-description-description-lieu {
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: #6a89cc;
+    font-size: 2em;
+    font-family: 'Nunito', sans-serif
+
+}
+.post-description-description-texte {
+    margin-bottom: 0;
+    font-size: 1.2em;
+    font-family: 'Nunito', sans-serif;
+    text-align: justify;
+}
+
+.post-description-submit {
+    border: solid #6a89cc 3px;
+    background: white;
+    border-radius: 6px;
+    display: block;
+    color: #6a89cc;
+    margin: 10% 20%;
+    width: 60%;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+.post-participants {
+    height: auto;
+    background-color: #6a89cc;
+}
+.post-participants h1 {
+    display: inline-block;
+    margin: 15px auto 15px 5%;
+    font-family: 'Montserrat', sans-serif;
+    color: white !important;
+    font-size: 2em;
+}
+.post-participants-2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+.post-participants-test {
+    width: 30px;
+    height: 30px;
+    border: solid white 2px;
+    margin: 1%;
+}
+
+.post-image {
+    height: auto;
+}
+
+.post-image h1{
+    display: inline-block;
+    margin: 15px auto 15px 5%;
+    font-family: 'Montserrat', sans-serif;
+    color: #6a89cc !important;
+    font-size: 2em;
+}
+.post-image-2 {
+    /* display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    */
+
+    /*        Rangement 2.0 photos           */
+    margin: .5vw;
+    font-size: 0;
+    display: -ms-flexbox;
+    -ms-flexbox-wrap: wrap;
+    -ms-flexbox-direction: column;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    display: -webkit-box;
+    display: flex;
+
+}
+
+/*        Rangement 2.0 photos           */
+.post-image-test {
+    /* width: 30px;
+    height: 30px;
+    border: solid #6a89cc 2px;
+    margin: 1%; */
+    /*        Rangement 2.0 photos           */
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: auto;
+    width: 30%;
+    margin: .5vw;
+}
+/*        Rangement 2.0 photos           */
+.post-image-test img{
+    width: 100%;
+    height: auto;
+}
+/*        Rangement 2.0 photos           */
+@@media screen and (max-width: 400px) {
+    .post-image-test{
+        margin: 0;
+    }
+    .post-image-2{
+        padding: 0;
+    }
+}
