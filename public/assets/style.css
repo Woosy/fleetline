@@ -638,9 +638,10 @@ a:hover {
 .post-description-description-lieu {
     display: block;
     margin: auto;
+    margin-bottom: 15px;
     text-align: center;
     color: #6a89cc;
-    font-size: 2em;
+    font-size: 20px;
     font-family: 'Nunito', sans-serif
 
 }
