@@ -687,8 +687,12 @@ a:hover {
 .post-participants-test {
     width: 30px;
     height: 30px;
-    border: solid white 2px;
     margin: 1%;
+}
+
+.post-participants-test img {
+    width: 30px;
+    height: 30px;
 }
 
 .post-image {

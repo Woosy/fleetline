@@ -68,23 +68,8 @@ include("includes/header.php");
     <div class="post-image">
         <h1>Photos</h1>
         <div class="post-image-2">
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
-            <div class="post-image-test"><img src="assets/images/pdp_defaut_femme.png"/></div>
         </div>
     </div>
-
-
-
-
 
 
 </body>
@@ -95,6 +80,28 @@ include("includes/header.php");
 
 $(window).on('load', function () {
 
+    function loadParticipants() {
+        $.ajax({
+            url:"includes/functions.php",
+            type: "POST",
+            data:{
+                "action": "ajax_load_participants",
+                "event_id": getParameterByName('id')
+            },
+            success:function(data) {
+                // Afficher toutes les données de ma requête
+                if (data == "erreur") {
+                    errorAnimation("Une erreur est survenue");
+                } else {
+                    $('.post-participants-2').html(data);
+                }
+            }
+        });
+    }
+
+
+
+    loadParticipants();
 
     // Ajoute l'utilisateur à la liste des participants
     $(".post-description-submit").click(function() {
@@ -113,6 +120,7 @@ $(window).on('load', function () {
                 } else {
                     successAnimation("C'est noté !");
                     setTimeout(function() {
+                        loadParticipants();
                         $(".post-description-submit").slideUp(1200);
                     }, 1200);
                 }

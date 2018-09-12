@@ -42,6 +42,10 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         case 'ajax_je_participe':
         ajax_je_participe($bdd);
         break;
+
+        case 'ajax_load_participants':
+        ajax_load_participants($bdd);
+        break;
     }
 }
 
@@ -332,6 +336,42 @@ function ajax_je_participe($bdd) {
 
     } else {
         echo "erreur";
+    }
+
+}
+
+
+
+
+/**
+* Charge les pdp de tout les participants d'un événement
+*/
+function ajax_load_participants($bdd) {
+
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        $sql = $bdd -> prepare("SELECT * FROM participants WHERE post = ? ORDER BY id");
+        $sql -> execute(array($_REQUEST['event_id']));
+
+        $results = $sql -> fetchAll();
+        $output = "";
+
+        foreach ($results as $resultat) {
+
+            // Préparation des variables :
+            $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
+            $sql2 -> execute(array($resultat['utilisateur']));
+            $results2 = $sql2 -> fetch();
+
+            $output = $output."
+            <div class='post-participants-test'><img src='".$results2['pdp']."'/></div>";
+
+        }
+
+        echo $output;
+
     }
 
 }
