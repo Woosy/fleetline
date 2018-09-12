@@ -646,7 +646,7 @@ a:hover {
 
 }
 .post-description-description-texte {
-    margin-bottom: 0;
+    margin-bottom: 15px;
     font-size: 1.2em;
     font-family: 'Nunito', sans-serif;
     text-align: justify;
@@ -658,7 +658,7 @@ a:hover {
     border-radius: 6px;
     display: block;
     color: #6a89cc;
-    margin: 10% 20%;
+    margin: 5px auto 20px auto;
     width: 60%;
     height: 50px;
     font-size: 20px;

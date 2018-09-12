@@ -38,6 +38,10 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         case 'ajax_profil_posts':
         ajax_profil_posts($bdd);
         break;
+
+        case 'ajax_je_participe':
+        ajax_je_participe($bdd);
+        break;
     }
 }
 
@@ -308,6 +312,27 @@ function ajax_profil_posts($bdd) {
 
     }
 
+
+}
+
+
+
+
+/**
+* Ajoute un utilisateur à la liste des participants d'un événement
+*/
+function ajax_je_participe($bdd) {
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        $sql = $bdd -> prepare("INSERT INTO participants (utilisateur, post) VALUES (?, ?)");
+        $sql -> execute(array($_COOKIE['mail'], $_REQUEST['event_id']));
+        echo "true";
+
+    } else {
+        echo "erreur";
+    }
 
 }
 

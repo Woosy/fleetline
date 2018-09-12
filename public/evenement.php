@@ -29,25 +29,23 @@ include("includes/header.php");
 
     <!-- Corp de la description -->
     <div class='post-description'>
-
-        <p class='post-description-titre'>Sortie sushi !</p>
-
-        <div class='post-description-date'>
-            <p class='post-description-date-j'>Samedi 13/09</p>
-            <p class='post-description-date-h'>20:00</p>
-        </div>
-
-        <div class='post-description-description'>
-            <p class='post-description-description-lieu'>Lyon</p>
-            <p class='post-description-description-texte'>
-                Erar iam nav em omni bus que arma me ntis instr ucta m mari com mittat.
-            </p>
-        </div>
-
     </div>
 
 
-    <input class="post-description-submit"type="submit" name="" value="Je participe">
+    <?php include("includes/overlay.php");
+
+
+
+    $sql = $bdd -> prepare("SELECT * FROM participants WHERE utilisateur = ? AND post = ?");
+    $sql -> execute(array($_COOKIE['mail'], $_GET['id']));
+    $result = $sql -> rowCount();
+
+    if ($result == 0) {
+        echo "<input class='post-description-submit' type='submit' value='Je participe'>";
+    }
+
+    ?>
+
 
     <div class="post-participants">
         <h1>Participants</h1>
@@ -89,10 +87,6 @@ include("includes/header.php");
 
 
 
-    <!-- Overlay -->
-    <?php include("includes/overlay.php") ?>
-
-
 </body>
 
 
@@ -100,6 +94,33 @@ include("includes/header.php");
 
 
 $(window).on('load', function () {
+
+
+    // Ajoute l'utilisateur à la liste des participants
+    $(".post-description-submit").click(function() {
+
+        $.ajax({
+            url:"includes/functions.php",
+            type: "POST",
+            data:{
+                "action": "ajax_je_participe",
+                "event_id": getParameterByName('id')
+            },
+            success:function(data) {
+                // Afficher toutes les données de ma requête
+                if (data == "erreur") {
+                    errorAnimation("Une erreur est survenue");
+                } else {
+                    successAnimation("C'est noté !");
+                    setTimeout(function() {
+                        $(".post-description-submit").slideUp(1200);
+                    }, 1200);
+                }
+            }
+        });
+
+    });
+
 
     // Récupération informations de l'événement
     $.ajax({
@@ -118,6 +139,7 @@ $(window).on('load', function () {
             }
         }
     });
+
 
 });
 
