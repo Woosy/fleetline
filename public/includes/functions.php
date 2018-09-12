@@ -34,6 +34,10 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         case 'ajax_event_page':
         ajax_event_page($bdd);
         break;
+
+        case 'ajax_profil_posts':
+        ajax_profil_posts($bdd);
+        break;
     }
 }
 
@@ -251,5 +255,61 @@ function ajax_event_page($bdd) {
     }
 
 }
+
+
+
+
+/**
+* Chargement des posts de l'utilisateur sur sa page de profil
+*/
+function ajax_profil_posts($bdd) {
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        $sql = $bdd -> prepare("SELECT * FROM posts WHERE auteur = ? ORDER BY id DESC");
+        $sql -> execute(array($_COOKIE['mail']));
+
+        $results = $sql -> fetchAll();
+        $output = "";
+
+        foreach ($results as $resultat) {
+
+            // Préparation des variables :
+            $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
+            $sql2 -> execute(array($resultat['auteur']));
+            $results2 = $sql2 -> fetch();
+
+            $date = new DateTime();
+            $date->setTimestamp($resultat['date_debut']);
+            $date = date_format($date, 'd/m/Y');
+
+            $output = $output."
+            <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
+            <div class='home-page'>
+            <div class='home-post'>
+            <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+            <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
+            <p class='post-title'>".$resultat['titre']."</p>
+            <p class='post-desc'>".$resultat['description']."</p>
+            <div class='post-autres'>
+            <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
+            <p class='post-date'>".$date."</p>
+            <p class='post-heure'>".$resultat['heure']."</p>
+            <p class='post-likes'>❤ 13</p>
+            </div>
+            </div>
+            </div>
+            </a>";
+
+        }
+
+        echo $output;
+
+    }
+
+
+}
+
 
 ?>

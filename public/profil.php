@@ -66,71 +66,9 @@ include("includes/head.php");
 
 
 
-
-
-    <!-- Affichage des posts -->
-    <div href="evenement.php" class="home-post loader-on">
-        <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-        <p class="post-auteur-nom">Arthur D.</p>
-        <p class="post-title">Ceci est un titre</p>
-        <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-        <div class="post-autres">
-            <p class="post-ville">Villeurbanne</p>
-            <p class="post-date">Samedi 13/09</p>
-            <p class="post-heure">13:00</p>
-            <p class="post-likes">❤ 13</p>
-        </div>
+    <div class="profil-liste-posts">
     </div>
 
-    <div href="evenement.php" class="home-post loader-on">
-        <img class="post-auteur-pdp" src="assets/images/pdp_defaut_homme.png" alt="PDP">
-        <p class="post-auteur-nom">Arthur D.</p>
-        <p class="post-title">Ceci est un titre</p>
-        <p class="post-desc">Lorem ipcididunt ut labore et dolore magna</p>
-        <div class="post-autres">
-            <p class="post-ville">Villeurbanne</p>
-            <p class="post-date">Samedi 13/09</p>
-            <p class="post-heure">13:00</p>
-            <p class="post-likes">❤ 13</p>
-        </div>
-    </div>
-
-
-
-
-
-
-    <!-- Modal pour le crop avec croppie  -->
-    <div id="modalCroppie" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modification photo de profil</h4>
-                </div>
-
-
-                <div class="modal-body">
-                    <div style="margin: 0px auto; width: auto">
-                        <div id="image_to_crop"></div>
-                    </div>
-                    <div style="margin-left: 37%; margin-bottom: 35px;">
-                        <button class="btn btn-success crop_image">Enregistrer la photo</button>
-                    </div>
-                </div>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
 
 
 </body>
@@ -139,55 +77,23 @@ include("includes/head.php");
 
 <script>
 
-$('#file').on('change', function(){
+$(window).on('load', function () {
 
-    var reader = new FileReader();
-    reader.onload = function (event) {
-        $image_crop.croppie('bind', {
-            url: event.target.result
-        });
-    }
-    reader.readAsDataURL(this.files[0]);
-    $('#modalCroppie').modal('show');
+    // Récupération des posts
+    $.ajax({
+        url:"includes/functions.php",
+        type: "POST",
+        data:{
+            "action": "ajax_profil_posts"
+        },
+        success:function(data) {
+            // Afficher toutes les données de ma requête
+            $(".profil-liste-posts").html(data);
+        }
+    });
 
 });
 
-
-
-$image_crop = $('#image_to_crop').croppie({
-    viewport: {
-        width:200,
-        height:200,
-        type:'circle'
-    },
-    boundary:{
-        width: 300,
-        height: 300
-    }
-});
-
-
-
-$('.crop_image').click(function(event){
-
-    $image_crop.croppie('result', {
-        type: 'canvas',
-        size: 'viewport'
-    }).then(function(response){
-        $('#uploadimageModal').modal('hide');
-        $.ajax({
-            url:"uneurl/upload.php",
-            type: "POST",
-            data:{
-                "newImage": response
-            },
-
-            success:function(data) {
-
-            }
-        });
-    })
-});
 </script>
 
 
