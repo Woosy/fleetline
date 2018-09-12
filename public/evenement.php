@@ -28,20 +28,25 @@ include("includes/header.php");
 
 
     <!-- Corp de la description -->
-    <div class="post-description">
-        <p class="post-description-titre">Sortie sushi !</p>
-        <div class="post-description-date">
-            <p class="post-description-date-j">Samedi 13/09</p>
-            <p class="post-description-date-h">20:00</p>
+    <div class='post-description'>
+
+        <p class='post-description-titre'>Sortie sushi !</p>
+
+        <div class='post-description-date'>
+            <p class='post-description-date-j'>Samedi 13/09</p>
+            <p class='post-description-date-h'>20:00</p>
         </div>
-        <div class="post-description-description">
-            <p class="post-description-description-lieu">Lyon</p>
-            <p class="post-description-description-texte">
+
+        <div class='post-description-description'>
+            <p class='post-description-description-lieu'>Lyon</p>
+            <p class='post-description-description-texte'>
                 Erar iam nav em omni bus que arma me ntis instr ucta m mari com mittat.
             </p>
         </div>
 
     </div>
+
+
     <input class="post-description-submit"type="submit" name="" value="Je participe">
 
     <div class="post-participants">
@@ -89,6 +94,35 @@ include("includes/header.php");
 
 
 </body>
+
+
+<script type="text/javascript">
+
+
+$(window).on('load', function () {
+
+    // Récupération informations de l'événement
+    $.ajax({
+        url:"includes/functions.php",
+        type: "POST",
+        data:{
+            "action": "ajax_event_page",
+            "event_id": getParameterByName('id')
+        },
+        success:function(data) {
+            // Afficher toutes les données de ma requête
+            if (data == "erreur") {
+                errorAnimation("Une erreur est survenue");
+            } else {
+                $(".post-description").html(data);
+            }
+        }
+    });
+
+});
+
+
+</script>
 
 
 </html>

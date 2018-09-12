@@ -30,6 +30,10 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         case 'ajax_register_user':
         ajax_register_user($bdd);
         break;
+
+        case 'ajax_event_page':
+        ajax_event_page($bdd);
+        break;
     }
 }
 
@@ -205,6 +209,45 @@ function ajax_register_user($bdd) {
             $sql2 -> execute(array($_COOKIE['mail'], $_COOKIE['nom'], $_COOKIE['prenom']));
         }
 
+    }
+
+}
+
+
+
+
+/**
+* Renvoie les informations de l'événement en question
+*/
+function ajax_event_page($bdd) {
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        $sql = $bdd -> prepare("SELECT * FROM posts WHERE id = ?");
+        $sql -> execute(array($_REQUEST['event_id']));
+        $results = $sql -> fetch();
+
+        $date = new DateTime();
+        $date->setTimestamp($results['date_debut']);
+        $date = date_format($date, 'd/m/Y');
+
+        $output = "<div class='post-description'>
+        <p class='post-description-titre'>".$results['titre']."</p>
+        <div class='post-description-date'>
+        <p class='post-description-date-j'>".$date."</p>
+        <p class='post-description-date-h'>".$results['heure']."</p>
+        </div>
+        <div class='post-description-description'>
+        <p class='post-description-description-lieu'>".$results['lieu']."</p>
+        <p class='post-description-description-texte'>".$results['description']."</p>
+        </div>
+        </div>";
+
+        echo $output;
+
+    } else {
+        echo "erreur";
     }
 
 }
