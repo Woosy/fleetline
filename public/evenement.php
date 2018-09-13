@@ -49,19 +49,7 @@ include("includes/header.php");
 
     <div class="post-participants">
         <h1>Participants</h1>
-        <div class="post-participants-2">
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
-            <div class="post-participants-test"></div>
+        <div class="post-participants-2">*
         </div>
     </div>
 

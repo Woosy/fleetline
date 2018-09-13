@@ -90,6 +90,15 @@ include("includes/head.php");
 
 $(window).on('load', function () {
 
+
+    // Redirection profil utilisateur
+    $(".post-auteur-pdp").click(function () {
+        console.log("click pdp");
+        var url = $(".post-auteur-pdp").getAttribute("href");
+        window.location.replace(url);
+    });
+
+
     // Récupération des posts
     $.ajax({
         url:"includes/functions.php",

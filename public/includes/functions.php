@@ -175,10 +175,12 @@ function ajax_home_page($bdd) {
                 $date = date_format($date, 'd/m/Y');
 
                 $output = $output."
-                <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                 <div class='home-page'>
                 <div class='home-post'>
-                <img class='post-auteur-pdp' src='".$results2['pdp']."' alt='PDP'>
+                <a href='profil.php?id=".$results2['id']."'>
+                <img href='profil.php?id=".$results2['id']."' class='post-auteur-pdp' src='".$results2['pdp']."' alt='PDP'>
+                </a>
+                <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                 <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
                 <p class='post-title'>".$resultat['titre']."</p>
                 <p class='post-desc'>".$resultat['description']."</p>
@@ -187,10 +189,10 @@ function ajax_home_page($bdd) {
                 <p class='post-date'>".$date."</p>
                 <p class='post-heure'>".$resultat['heure']."</p>
                 <p class='post-likes'>❤ 13</p>
+                </a>
                 </div>
                 </div>
-                </div>
-                </a>";
+                </div>";
 
             }
 
@@ -311,10 +313,12 @@ function ajax_profil_posts($bdd) {
                 $date = date_format($date, 'd/m/Y');
 
                 $output = $output."
-                <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                 <div class='home-page'>
                 <div class='home-post'>
+                <a href='profil.php?id=".$results2['id']."'>
                 <img class='post-auteur-pdp' src='".$results2['pdp']."' alt='PDP'>
+                </a>
+                <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                 <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
                 <p class='post-title'>".$resultat['titre']."</p>
                 <p class='post-desc'>".$resultat['description']."</p>
@@ -323,10 +327,10 @@ function ajax_profil_posts($bdd) {
                 <p class='post-date'>".$date."</p>
                 <p class='post-heure'>".$resultat['heure']."</p>
                 <p class='post-likes'>❤ 13</p>
+                </a>
                 </div>
                 </div>
-                </div>
-                </a>";
+                </div>";
 
             }
 
@@ -386,7 +390,9 @@ function ajax_load_participants($bdd) {
             $results2 = $sql2 -> fetch();
 
             $output = $output."
-            <div class='post-participants-test'><img src='".$results2['pdp']."'/></div>";
+            <a href=profil.php?id=".$results2['id'].">
+            <div class='post-participants-test'><img src='".$results2['pdp']."'/></div>
+            </a>";
 
         }
 
