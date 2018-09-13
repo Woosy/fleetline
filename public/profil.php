@@ -55,34 +55,6 @@ include("includes/head.php");
 
     <!-- Container -->
     <div class="profil-page-container">
-
-        <!-- Pdp -->
-        <div class='profil-pdp'>
-            <label for='file' class='label-file'><img class='profil-pdp-image' src='<?php echo $results['pdp'] ?>' alt='Logo'></label>
-            <input id='file' type='file' style='display: none;'>
-        </div>
-
-
-        <!-- Informations de l'utilisateur -->
-        <div class='profil-user'>
-            <div class='profil-user-nom'><?php echo $_COOKIE['prenom'].' '.$_COOKIE['nom']; ?></div>
-            <div class='profil-user-mail'><?php echo $_COOKIE['mail']; ?></div>
-        </div>
-
-
-        <button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>
-
-
-        <!-- Liste des événements de l'utilisateur-->
-        <div class='profil-evenements'>
-            <div class='profil-evenements-title'>Mes événements</div>
-        </div>
-
-
-
-        <div class='profil-liste-posts'>
-        </div>
-
     </div>
 
 

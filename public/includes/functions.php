@@ -425,23 +425,28 @@ function ajax_profil_page($bdd) {
 
         if (isset($results['id'])) {
 
+            $ajouter_ami = "";
+            if ($results['mail'] != $_COOKIE['mail']) {
+                $ajouter_ami = "<button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>";
+            }
+
             $output = "";
 
             $output = $output."
             <div class='profil-pdp'>
-                <label for='file' class='label-file'><img class='profil-pdp-image' src='".$results['pdp']."' alt='Photo de profil'></label>
-                <input id='file' type='file' style='display: none;'>
+            <label for='file' class='label-file'><img class='profil-pdp-image' src='".$results['pdp']."' alt='Photo de profil'></label>
+            <input id='file' type='file' style='display: none;'>
             </div>
 
             <div class='profil-user'>
-                <div class='profil-user-nom'>".$results['prenom']." ".$results['nom']."</div>
-                <div class='profil-user-mail'>".$results['mail']."</div>
+            <div class='profil-user-nom'>".$results['prenom']." ".$results['nom']."</div>
+            <div class='profil-user-mail'>".$results['mail']."</div>
             </div>
 
-            <button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>
+            ".$ajouter_ami."
 
             <div class='profil-evenements'>
-                <div class='profil-evenements-title'>Ses événements</div>
+            <div class='profil-evenements-title'>Ses événements</div>
             </div>
 
             <div class='profil-liste-posts'>
