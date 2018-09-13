@@ -240,27 +240,38 @@ function ajax_event_page($bdd) {
     // On vérifie que les données sont bien transmises
     if (isset($_REQUEST)) {
 
+        // On vérifie que l'id existe bien :
         $sql = $bdd -> prepare("SELECT * FROM posts WHERE id = ?");
         $sql -> execute(array($_REQUEST['event_id']));
-        $results = $sql -> fetch();
+        $result = $sql -> rowCount();
+        if ($result != 0) {
 
-        $date = new DateTime();
-        $date->setTimestamp($results['date_debut']);
-        $date = date_format($date, 'd/m/Y');
+            $sql2 = $bdd -> prepare("SELECT * FROM posts WHERE id = ?");
+            $sql2 -> execute(array($_REQUEST['event_id']));
+            $results2 = $sql2 -> fetch();
 
-        $output = "<div class='post-description'>
-        <p class='post-description-titre'>".$results['titre']."</p>
-        <div class='post-description-date'>
-        <p class='post-description-date-j'>".$date."</p>
-        <p class='post-description-date-h'>".$results['heure']."</p>
-        </div>
-        <div class='post-description-description'>
-        <p class='post-description-description-lieu'>".$results['lieu']."</p>
-        <p class='post-description-description-texte'>".$results['description']."</p>
-        </div>
-        </div>";
+            $date = new DateTime();
+            $date->setTimestamp($results2['date_debut']);
+            $date = date_format($date, 'd/m/Y');
 
-        echo $output;
+            $output = "<div class='post-description'>
+            <p class='post-description-titre'>".$results2['titre']."</p>
+            <div class='post-description-date'>
+            <p class='post-description-date-j'>".$date."</p>
+            <p class='post-description-date-h'>".$results2['heure']."</p>
+            </div>
+            <div class='post-description-description'>
+            <p class='post-description-description-lieu'>".$results2['lieu']."</p>
+            <p class='post-description-description-texte'>".$results2['description']."</p>
+            </div>
+            </div>";
+
+            echo $output;
+
+        } else {
+            // Si l'id n'existe pas :
+            echo "redirect";
+        }
 
     } else {
         echo "erreur";

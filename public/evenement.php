@@ -142,6 +142,8 @@ $(window).on('load', function () {
             // Afficher toutes les données de ma requête
             if (data == "erreur") {
                 errorAnimation("Une erreur est survenue");
+            } else if (data == "redirect") {
+                window.location.replace("home.php");
             } else {
                 $(".post-description").html(data);
             }
