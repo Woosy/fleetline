@@ -125,7 +125,7 @@ class LoginController extends Controller
 
 
 
-				header('Location: http://localhost:8000/home');
+				header('Location: https://arthurdufour.com/home');
 				exit();
 			} catch (League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
 				echo 'Something went wrong, couldn\'t get tokens: ' . $e->getMessage();
