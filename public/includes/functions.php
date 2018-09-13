@@ -430,10 +430,6 @@ function ajax_profil_page($bdd) {
                 $ajouter_ami = "<button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>";
             }
 
-            $sql2 = $bdd -> prepare("SELECT * FROM posts WHERE auteur = ?");
-            $sql2 -> execute(array($results['mail']));
-            $results2 = $sql2 -> fetchAll();
-
             $output = "";
             $output = $output."
             <div class='profil-pdp'>
@@ -453,6 +449,10 @@ function ajax_profil_page($bdd) {
             </div>";
 
 
+            $sql2 = $bdd -> prepare("SELECT * FROM posts WHERE auteur = ?");
+            $sql2 -> execute(array($results['mail']));
+            $results2 = $sql2 -> fetchAll();
+
             foreach ($results2 as $resultat) {
 
 
@@ -465,7 +465,10 @@ function ajax_profil_page($bdd) {
                     $output = $output."
                     <div class='profil-liste-posts'>
                     <div href='evenement.php?id=".$resultat['id']."' class='home-post loader-on'>
+                    <a href='profil.php?id=".$results['id']."'>
                     <img class='post-auteur-pdp' src='".$results['pdp']."' alt='PDP'>
+                    </a>
+                    <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                     <p class='post-auteur-nom'>".$results['prenom']." ".substr($results['nom'], 0, 1).".</p>
                     <p class='post-title'>".$resultat['titre']."</p>
                     <p class='post-desc'>".$resultat['description']."</p>
@@ -474,6 +477,7 @@ function ajax_profil_page($bdd) {
                     <p class='post-date'>".$date."</p>
                     <p class='post-heure'>".$resultat['heure']."</p>
                     <p class='post-likes'>❤ 13</p>
+                    </a>
                     </div>
                     </div>
                     </div>";
