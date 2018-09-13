@@ -28,7 +28,7 @@ class Constants
 {
     const CLIENT_ID          = 'edf34295-9122-46e1-8493-5702f87dbf71';
     const CLIENT_SECRET      = 'gtdqWQQMWB837([yzsR41}[';
-    const REDIRECT_URI       = 'https://arthurdufour.com:8000/oauth.php';
+    const REDIRECT_URI       = 'http://arthurdufour.com:8000/oauth.php';
     const AUTHORITY_URL      = 'https://login.microsoftonline.com/common';
     const AUTHORIZE_ENDPOINT = '/oauth2/v2.0/authorize';
     const TOKEN_ENDPOINT     = '/oauth2/v2.0/token';
