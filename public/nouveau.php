@@ -118,6 +118,7 @@ $(".action-post-new-event").click(function() {
                             window.location.replace("home.php");
                         }, 2500);
                     } else {
+                        console.log("ERREUR : " + data);
                         errorAnimation("Une erreur est survenue");
                     }
                 }

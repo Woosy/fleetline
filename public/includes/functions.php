@@ -98,7 +98,7 @@ function ajax_new_event($bdd) {
         $lieu = $_REQUEST['lieu'];
         $description = $_REQUEST['description'];
         $temp = $_REQUEST['date'];
-        $date_debut = strtotime($temp);
+        $date_debut = strtotime($temp) + (intval(substr($heure, 0, 2)) * 3600) + (intval(substr($heure, -2)) * 60);
 
         $sql = $bdd -> prepare("INSERT INTO posts (auteur, date_debut, heure, titre, description, lieu) VALUES(?, ?, ?, ?, ?, ?)");
         $sql -> execute(array($auteur, $date_debut, $heure, $titre, $description, $lieu));
@@ -154,7 +154,7 @@ function ajax_home_page($bdd) {
     // On vérifie que les données sont bien transmises
     if (isset($_REQUEST)) {
 
-        $sql = $bdd -> prepare("SELECT * FROM posts ORDER BY id DESC");
+        $sql = $bdd -> prepare("SELECT * FROM posts ORDER BY date_debut");
         $sql -> execute();
 
         $results = $sql -> fetchAll();
@@ -162,33 +162,37 @@ function ajax_home_page($bdd) {
 
         foreach ($results as $resultat) {
 
+            // On vérifie que l'événement n'est pas déjà passé
+            if ($resultat['date_debut'] > time()) {
 
-            // Préparation des variables :
-            $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
-            $sql2 -> execute(array($resultat['auteur']));
-            $results2 = $sql2 -> fetch();
+                // Préparation des variables :
+                $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
+                $sql2 -> execute(array($resultat['auteur']));
+                $results2 = $sql2 -> fetch();
 
-            $date = new DateTime();
-            $date->setTimestamp($resultat['date_debut']);
-            $date = date_format($date, 'd/m/Y');
+                $date = new DateTime();
+                $date->setTimestamp($resultat['date_debut']);
+                $date = date_format($date, 'd/m/Y');
 
-            $output = $output."
-            <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
-            <div class='home-page'>
-            <div class='home-post'>
-            <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
-            <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
-            <p class='post-title'>".$resultat['titre']."</p>
-            <p class='post-desc'>".$resultat['description']."</p>
-            <div class='post-autres'>
-            <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
-            <p class='post-date'>".$date."</p>
-            <p class='post-heure'>".$resultat['heure']."</p>
-            <p class='post-likes'>❤ 13</p>
-            </div>
-            </div>
-            </div>
-            </a>";
+                $output = $output."
+                <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
+                <div class='home-page'>
+                <div class='home-post'>
+                <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+                <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
+                <p class='post-title'>".$resultat['titre']."</p>
+                <p class='post-desc'>".$resultat['description']."</p>
+                <div class='post-autres'>
+                <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
+                <p class='post-date'>".$date."</p>
+                <p class='post-heure'>".$resultat['heure']."</p>
+                <p class='post-likes'>❤ 13</p>
+                </div>
+                </div>
+                </div>
+                </a>";
+
+            }
 
         }
 
@@ -275,7 +279,7 @@ function ajax_profil_posts($bdd) {
     // On vérifie que les données sont bien transmises
     if (isset($_REQUEST)) {
 
-        $sql = $bdd -> prepare("SELECT * FROM posts WHERE auteur = ? ORDER BY id DESC");
+        $sql = $bdd -> prepare("SELECT * FROM posts WHERE auteur = ? ORDER BY date_debut");
         $sql -> execute(array($_COOKIE['mail']));
 
         $results = $sql -> fetchAll();
@@ -283,32 +287,37 @@ function ajax_profil_posts($bdd) {
 
         foreach ($results as $resultat) {
 
-            // Préparation des variables :
-            $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
-            $sql2 -> execute(array($resultat['auteur']));
-            $results2 = $sql2 -> fetch();
+            // On vérifie que l'événement n'est pas déjà passé
+            if ($resultat['date_debut'] > time()) {
 
-            $date = new DateTime();
-            $date->setTimestamp($resultat['date_debut']);
-            $date = date_format($date, 'd/m/Y');
+                // Préparation des variables :
+                $sql2 = $bdd -> prepare("SELECT * FROM utilisateurs WHERE mail = ?");
+                $sql2 -> execute(array($resultat['auteur']));
+                $results2 = $sql2 -> fetch();
 
-            $output = $output."
-            <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
-            <div class='home-page'>
-            <div class='home-post'>
-            <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
-            <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
-            <p class='post-title'>".$resultat['titre']."</p>
-            <p class='post-desc'>".$resultat['description']."</p>
-            <div class='post-autres'>
-            <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
-            <p class='post-date'>".$date."</p>
-            <p class='post-heure'>".$resultat['heure']."</p>
-            <p class='post-likes'>❤ 13</p>
-            </div>
-            </div>
-            </div>
-            </a>";
+                $date = new DateTime();
+                $date->setTimestamp($resultat['date_debut']);
+                $date = date_format($date, 'd/m/Y');
+
+                $output = $output."
+                <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
+                <div class='home-page'>
+                <div class='home-post'>
+                <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+                <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
+                <p class='post-title'>".$resultat['titre']."</p>
+                <p class='post-desc'>".$resultat['description']."</p>
+                <div class='post-autres'>
+                <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
+                <p class='post-date'>".$date."</p>
+                <p class='post-heure'>".$resultat['heure']."</p>
+                <p class='post-likes'>❤ 13</p>
+                </div>
+                </div>
+                </div>
+                </a>";
+
+            }
 
         }
 
