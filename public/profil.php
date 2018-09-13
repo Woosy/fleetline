@@ -53,31 +53,36 @@ include("includes/head.php");
     </div>
 
 
-    <!-- Pdp -->
-    <div class="profil-pdp">
-        <label for="file" class="label-file"><img class="profil-pdp-image" src="<?php echo $results['pdp'] ?>" alt="Logo"></label>
-        <input id="file" type="file" style="display: none;">
-    </div>
+    <!-- Container -->
+    <div class="profil-page-container">
+
+        <!-- Pdp -->
+        <div class='profil-pdp'>
+            <label for='file' class='label-file'><img class='profil-pdp-image' src='<?php echo $results['pdp'] ?>' alt='Logo'></label>
+            <input id='file' type='file' style='display: none;'>
+        </div>
 
 
-    <!-- Informations de l'utilisateur -->
-    <div class="profil-user">
-        <div class="profil-user-nom"><?php echo $_COOKIE['prenom']." ".$_COOKIE['nom']; ?></div>
-        <div class="profil-user-mail"><?php echo $_COOKIE['mail']; ?></div>
-    </div>
+        <!-- Informations de l'utilisateur -->
+        <div class='profil-user'>
+            <div class='profil-user-nom'><?php echo $_COOKIE['prenom'].' '.$_COOKIE['nom']; ?></div>
+            <div class='profil-user-mail'><?php echo $_COOKIE['mail']; ?></div>
+        </div>
 
 
-    <button type="button" name="button" class="btn profil-btn-amis">Ajouter aux amis</button>
+        <button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>
 
 
-    <!-- Liste des événements de l'utilisateur-->
-    <div class="profil-evenements">
-        <div class="profil-evenements-title">Mes événements</div>
-    </div>
+        <!-- Liste des événements de l'utilisateur-->
+        <div class='profil-evenements'>
+            <div class='profil-evenements-title'>Mes événements</div>
+        </div>
 
 
 
-    <div class="profil-liste-posts">
+        <div class='profil-liste-posts'>
+        </div>
+
     </div>
 
 
@@ -111,6 +116,29 @@ $(window).on('load', function () {
             $(".profil-liste-posts").html(data);
         }
     });
+
+
+
+    // Récupération informations de l'utilisateur
+    $.ajax({
+        url:"includes/functions.php",
+        type: "POST",
+        data:{
+            "action": "ajax_profil_page",
+            "utilisateur_id": getParameterByName('id')
+        },
+        success:function(data) {
+            // Afficher toutes les données de ma requête
+            if (data == "erreur") {
+                errorAnimation("Une erreur est survenue");
+            } else if (data == "redirect") {
+                window.location.replace("home.php");
+            } else {
+                $(".profil-page-container").html(data);
+            }
+        }
+    });
+
 
 });
 

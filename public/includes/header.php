@@ -23,7 +23,7 @@ include("head.php");
 
         include('includes/database.php');
 
-        $sql = $bdd -> prepare("SELECT pdp FROM utilisateurs WHERE mail = ?");
+        $sql = $bdd -> prepare("SELECT pdp, id FROM utilisateurs WHERE mail = ?");
         $sql -> execute(array($_COOKIE['mail']));
 
         $results = $sql -> fetch();
@@ -33,7 +33,7 @@ include("head.php");
 
         <!-- Partie droite -->
         <div class="header-right">
-            <a href="profil.php" class="loader-on"><img class="header-pdp" src="<?php echo $results['pdp']; ?>" alt="Logo"></a>
+            <a href="profil.php?id=<?php echo $results['id']; ?>" class="loader-on"><img class="header-pdp" src="<?php echo $results['pdp']; ?>" alt="Logo"></a>
         </div>
 
     </div>

@@ -46,6 +46,10 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         case 'ajax_load_participants':
         ajax_load_participants($bdd);
         break;
+
+        case 'ajax_profil_page':
+        ajax_profil_page($bdd);
+        break;
     }
 }
 
@@ -398,6 +402,60 @@ function ajax_load_participants($bdd) {
 
         echo $output;
 
+    }
+
+}
+
+
+
+
+/**
+* Chargement de la page profil en fonction de l'id de l'utilisateur
+*/
+function ajax_profil_page($bdd) {
+
+
+    // On vérifie que les données sont bien transmises
+    if (isset($_REQUEST)) {
+
+        // On vérifie que l'id existe bien :
+        $sql = $bdd -> prepare("SELECT * FROM utilisateurs WHERE id = ?");
+        $sql -> execute(array($_REQUEST['utilisateur_id']));
+        $results = $sql -> fetch();
+
+        if (isset($results['id'])) {
+
+            $output = "";
+
+            $output = $output."
+            <div class='profil-pdp'>
+                <label for='file' class='label-file'><img class='profil-pdp-image' src='".$results['pdp']."' alt='Photo de profil'></label>
+                <input id='file' type='file' style='display: none;'>
+            </div>
+
+            <div class='profil-user'>
+                <div class='profil-user-nom'>".$results['prenom']." ".$results['nom']."</div>
+                <div class='profil-user-mail'>".$results['mail']."</div>
+            </div>
+
+            <button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>
+
+            <div class='profil-evenements'>
+                <div class='profil-evenements-title'>Ses événements</div>
+            </div>
+
+            <div class='profil-liste-posts'>
+            </div>";
+
+            echo $output;
+
+        } else {
+            // Si l'id n'existe pas :
+            echo "redirect";
+        }
+
+    } else {
+        echo "erreur";
     }
 
 }
