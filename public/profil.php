@@ -34,6 +34,17 @@ include("includes/head.php");
     </div>
 
 
+    <?php
+
+    include('includes/database.php');
+
+    $sql = $bdd -> prepare("SELECT pdp FROM utilisateurs WHERE mail = ?");
+    $sql -> execute(array($_COOKIE['mail']));
+
+    $results = $sql -> fetch();
+
+    ?>
+
 
     <!-- Header avec lien vers la page d'accueil -->
     <div class="profil-header">
@@ -44,7 +55,7 @@ include("includes/head.php");
 
     <!-- Pdp -->
     <div class="profil-pdp">
-        <label for="file" class="label-file"><img class="profil-pdp-image" src="assets/images/pdp_defaut_homme.png" alt="Logo"></label>
+        <label for="file" class="label-file"><img class="profil-pdp-image" src="<?php echo $results['pdp'] ?>" alt="Logo"></label>
         <input id="file" type="file" style="display: none;">
     </div>
 

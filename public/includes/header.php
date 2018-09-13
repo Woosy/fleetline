@@ -19,9 +19,21 @@ include("head.php");
         </div>
 
 
-        <!-- Partie gauche -->
+        <?php
+
+        include('includes/database.php');
+
+        $sql = $bdd -> prepare("SELECT pdp FROM utilisateurs WHERE mail = ?");
+        $sql -> execute(array($_COOKIE['mail']));
+
+        $results = $sql -> fetch();
+
+        ?>
+
+
+        <!-- Partie droite -->
         <div class="header-right">
-            <a href="profil.php" class="loader-on"><img class="header-pdp" src="assets/images/pdp_defaut_homme.png" alt="Logo"></a>
+            <a href="profil.php" class="loader-on"><img class="header-pdp" src="<?php echo $results['pdp']; ?>" alt="Logo"></a>
         </div>
 
     </div>

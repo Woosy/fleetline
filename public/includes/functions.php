@@ -178,7 +178,7 @@ function ajax_home_page($bdd) {
                 <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                 <div class='home-page'>
                 <div class='home-post'>
-                <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+                <img class='post-auteur-pdp' src='".$results2['pdp']."' alt='PDP'>
                 <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
                 <p class='post-title'>".$resultat['titre']."</p>
                 <p class='post-desc'>".$resultat['description']."</p>
@@ -314,7 +314,7 @@ function ajax_profil_posts($bdd) {
                 <a href='evenement.php?id=".$resultat['id']."' class='loader-on'>
                 <div class='home-page'>
                 <div class='home-post'>
-                <img class='post-auteur-pdp' src='assets/images/pdp_defaut_homme.png' alt='PDP'>
+                <img class='post-auteur-pdp' src='".$results2['pdp']."' alt='PDP'>
                 <p class='post-auteur-nom'>".$results2['prenom']." ".$results2['nom'][0].".</p>
                 <p class='post-title'>".$resultat['titre']."</p>
                 <p class='post-desc'>".$resultat['description']."</p>

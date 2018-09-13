@@ -253,7 +253,7 @@
 
 .post-auteur-nom {
     float: left;
-    width: 30%;
+    width: auto;
     height: auto;
     margin-top: 8px;
     font-family: 'Montserrat', sans-serif;
