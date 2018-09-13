@@ -430,8 +430,11 @@ function ajax_profil_page($bdd) {
                 $ajouter_ami = "<button type='button' name='button' class='btn profil-btn-amis'>Ajouter aux amis</button>";
             }
 
-            $output = "";
+            $sql2 = $bdd -> prepare("SELECT * FROM posts WHERE auteur = ?");
+            $sql2 -> execute(array($results['mail']));
+            $results2 = $sql2 -> fetchAll();
 
+            $output = "";
             $output = $output."
             <div class='profil-pdp'>
             <label for='file' class='label-file'><img class='profil-pdp-image' src='".$results['pdp']."' alt='Photo de profil'></label>
@@ -447,11 +450,37 @@ function ajax_profil_page($bdd) {
 
             <div class='profil-evenements'>
             <div class='profil-evenements-title'>Ses événements</div>
-            </div>
-
-            <div class='profil-liste-posts'>
             </div>";
 
+
+            foreach ($results2 as $resultat) {
+
+
+                // On vérifie que l'événement n'est pas déjà passé
+                if ($resultat['date_debut'] > time()) {
+                    $date = new DateTime();
+                    $date->setTimestamp($resultat['date_debut']);
+                    $date = date_format($date, 'd/m/Y');
+
+                    $output = $output."
+                    <div class='profil-liste-posts'>
+                    <div href='evenement.php?id=".$resultat['id']."' class='home-post loader-on'>
+                    <img class='post-auteur-pdp' src='".$results['pdp']."' alt='PDP'>
+                    <p class='post-auteur-nom'>".$results['prenom']." ".substr($results['nom'], 0, 1).".</p>
+                    <p class='post-title'>".$resultat['titre']."</p>
+                    <p class='post-desc'>".$resultat['description']."</p>
+                    <div class='post-autres'>
+                    <p class='post-ville'>".substr($resultat['lieu'], 0, 10)."</p>
+                    <p class='post-date'>".$date."</p>
+                    <p class='post-heure'>".$resultat['heure']."</p>
+                    <p class='post-likes'>❤ 13</p>
+                    </div>
+                    </div>
+                    </div>";
+
+                }
+
+            }
             echo $output;
 
         } else {
